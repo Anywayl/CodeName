@@ -1,11 +1,13 @@
+import PreloaderState from 'states/PreloaderState';
 import GameState from 'states/GameState';
 
 class Game extends Phaser.Game {
 
 	constructor() {
-		super(500, 500, Phaser.AUTO, 'content', null);
+		super(1000,  660, Phaser.AUTO, 'content', null);
+		this.state.add('PreloaderState', PreloaderState, false);
 		this.state.add('GameState', GameState, false);
-		this.state.start('GameState');
+		this.state.start('PreloaderState');
 	}
 
 }

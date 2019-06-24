@@ -1,12 +1,33 @@
-import RainbowText from 'objects/RainbowText';
+import Map from '../objects/map';
 
 class GameState extends Phaser.State {
 
 	create() {
-		let center = { x: this.game.world.centerX, y: this.game.world.centerY }
-		let text = new RainbowText(this.game, center.x, center.y, "- phaser -\nwith a sprinkle of\nES6 dust!");
-		text.anchor.set(0.5);
+		this.counter = 0;
+
+		this.view = this.game.add.group();
+		this.uiView = this.game.add.group();
+
+		let map = new Map(this.game, this.view);
+
+		let scoreText = this.scoreText = this.game.add.text(0,0, "Score: " + this.counter, {
+      font: "35pt Arial",
+      fill: "0xffffff",
+      align: "center"
+		});
+		
+		this.uiView.add(scoreText);
 	}
+
+	updateScore() {
+		this.game.time.events.add(500,() => {
+			this.scoreText.text = "Score: " + this.counter;
+			this.counter += 1;
+			this.updateScore();
+		});
+	}
+
+
 
 }
 
