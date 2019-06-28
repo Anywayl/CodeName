@@ -4,14 +4,27 @@ export default class Map extends Phaser.Group {
   constructor(game, parent) {
     super(game, parent);
 
+    this.bg = null;
+    this.europe = null;
+    this.greenland = null;
+    this.northAmerica = null;
+    this.southAmerica = null;
+    this.africa = null;
+    this.antarctica = null;
+    this.asia = null;
+    this.australia = null;
+
+    this.createBg();
+    this.createContinents();
+    // this.configureControls();
+
+  }
+
+  createBg() {
     let bg = this.bg = this.game.add.graphics();
     bg.beginFill(0x4488AA);
     bg.drawRect(0, 0, this.game.width, this.game.height);
     this.add(bg);
-
-    this.createContinents();
-    // this.configureControls();
-
   }
 
   createContinents() {
